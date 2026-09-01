@@ -47,23 +47,15 @@ const priceRanges = {
   "Upcoming Projects": { min: 400000, max: 1500000 }
 };
 
-const unsplashImages = [
-  "1545324418-cc1a3fa10c00", "1613490493576-7fde63acd811",
-  "1512917774080-9991f1c4c750", "1486406146926-c627a92ad1ab",
-  "1600596542815-ffad4c1539a9", "1600607687939-ce8a6c25118c",
-  "1600585154340-be6161a56a0c", "1600566753190-17f0baa2a6c3",
-  "1600047509807-ba8f99d2cdde", "1600047509358-9dc75509da38",
-  "1600573472592-401b489a3cdc", "1600607687644-c7171b42498f",
-  "1497366216548-37526070297c", "1600210492486-724fe5c67fb0",
-  "1500382017468-9049fed747ef", "1441986300917-64674bd600d8",
-  "1564013799919-ab600027ffc6", "1600566753086-00f18fb6b3ea",
-  "1600585154526-990dced4db0d", "1600566752355-35792bedcfea",
-  "1580587771525-78b9dba3b914", "1560448204-e02f11c3d0e2",
-  "1600585152220-90363fe7e115", "1600607687920-4e2a09cf159d",
-  "1600566753151-384129cf4e4e", "1600573472550-8125a1b4d1e4",
-  "1583608205776-bfd35f0d9f83", "1574362848149-11496d93a7c7",
-  "1560185893-a55cbc8c57e8", "1560448075-bb7f0563c1e4",
-  "1600585152915-d208bec867a1", "1600566753376-12c8ab7c5c3e"
+const pexelsImages = [
+  "11631278","37301680","18153132","31656143","11643330","14998334","9308434",
+  "15951714","31330470","38172681","37224965","31640021","14846410",
+  "38934658","27451770","20538974","19190343","18587809",
+  "24807128","24807124","2034335","37070077",
+  "257856","37993585","36349753","16764815",
+  "32016062","26590643","12453932","36224349",
+  "30331589","35397759","32122877","38322838",
+  "11918523","19969245","38513265","31656149","16401677"
 ];
 
 const titlePrefixes = [
@@ -147,7 +139,7 @@ function generateProperties() {
         return "$" + (p / 1000).toFixed(0) + "K";
       };
 
-      const imgId = unsplashImages[imgIndex % unsplashImages.length];
+      const imgId = pexelsImages[imgIndex % pexelsImages.length];
       imgIndex++;
 
       properties.push({
@@ -156,8 +148,8 @@ function generateProperties() {
         category: cat.name,
         location: location,
         priceRange: formatPrice(price) + " – " + formatPrice(priceHigh),
-        image: "https://images.unsplash.com/photo-" + imgId + "?w=600&h=400&fit=crop",
-        thumbnail: "https://images.unsplash.com/photo-" + imgId + "?w=100&h=140&fit=crop",
+        image: "https://images.pexels.com/photos/" + imgId + "/pexels-photo-" + imgId + ".jpeg?w=600&h=400&fit=crop",
+        thumbnail: "https://images.pexels.com/photos/" + imgId + "/pexels-photo-" + imgId + ".jpeg?w=100&h=140&fit=crop",
         status: status,
         bedrooms: bedrooms,
         price: price
