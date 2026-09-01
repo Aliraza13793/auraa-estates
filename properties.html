@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties | Auraa Estates</title>
+  <meta name="description" content="Explore our curated collection of luxury apartments, villas, commercial spaces, and waterfront properties.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav" id="topNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-wordmark">AURAA ESTATES</a>
+      <div class="nav-links" id="navLinks">
+        <a href="properties.html" class="nav-link active">Properties</a>
+        <a href="developments.html" class="nav-link">Developments</a>
+        <a href="investment.html" class="nav-link">Investment</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle">EN</button>
+        <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="btn btn-primary nav-cta">Enquire Now</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <div class="mobile-nav-content">
+      <a href="properties.html" class="mobile-nav-link">Properties</a>
+      <a href="developments.html" class="mobile-nav-link">Developments</a>
+      <a href="investment.html" class="mobile-nav-link">Investment</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="mobile-nav-link">Contact</a>
+      <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="btn btn-primary mobile-cta">Enquire Now</a>
+    </div>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <h1 class="page-title">Our Properties</h1>
+      <p class="page-subtitle">Explore our curated collection of premium real estate across prime locations</p>
+    </div>
+  </section>
+
+  <!-- Properties Grid -->
+  <section class="page-content">
+    <div class="page-content-inner">
+      <div class="property-filters">
+        <button class="filter-btn active" data-filter="all">All Properties</button>
+        <button class="filter-btn" data-filter="Luxury Apartments">Luxury Apartments</button>
+        <button class="filter-btn" data-filter="Villas">Villas</button>
+        <button class="filter-btn" data-filter="Commercial">Commercial</button>
+        <button class="filter-btn" data-filter="Waterfront">Waterfront</button>
+        <button class="filter-btn" data-filter="Plots">Plots</button>
+      </div>
+      <div class="property-grid" id="propertyGrid"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4 class="footer-heading">Auraa Estates</h4>
+        <p class="footer-text">Premium real estate developments and investment opportunities across leading cities.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Properties</h4>
+        <a href="properties.html" class="footer-link">Luxury Apartments</a>
+        <a href="properties.html" class="footer-link">Villas</a>
+        <a href="properties.html" class="footer-link">Commercial</a>
+        <a href="properties.html" class="footer-link">Waterfront</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Company</h4>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="developments.html" class="footer-link">Developments</a>
+        <a href="investment.html" class="footer-link">Investment</a>
+        <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="footer-link">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Locations</h4>
+        <a href="#" class="footer-link">Dubai</a>
+        <a href="#" class="footer-link">Islamabad</a>
+        <a href="#" class="footer-link">Lahore Pakistan</a>
+        <a href="#" class="footer-link">Karachi</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Connect</h4>
+        <a href="mailto:inquiries@auraaestates.com" class="footer-link">inquiries@auraaestates.com</a>
+        <a href="#" class="footer-link">LinkedIn</a>
+        <a href="#" class="footer-link">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Auraa Estates. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="properties.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const grid = document.getElementById('propertyGrid');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      let currentFilter = 'all';
+
+      function renderProperties(filter) {
+        grid.innerHTML = '';
+        const filtered = filter === 'all' ? properties : properties.filter(p => p.category === filter);
+        const display = filtered.slice(0, 24);
+
+        display.forEach(prop => {
+          const statusClass = prop.status === 'Ready to Move' ? 'status-ready' :
+                              prop.status === 'Under Construction' ? 'status-construction' :
+                              prop.status === 'New Launch' ? 'status-launch' : 'status-sold';
+
+          const card = document.createElement('div');
+          card.className = 'grid-card';
+          card.innerHTML =
+            '<img class="grid-card-image" src="' + prop.image + '" alt="' + prop.title + '" loading="lazy">' +
+            '<div class="grid-card-body">' +
+              '<h3 class="grid-card-title">' + prop.title + '</h3>' +
+              '<p class="grid-card-meta">' + prop.category + ' \u00B7 ' + prop.location + '</p>' +
+              '<p class="grid-card-price">' + prop.priceRange + '</p>' +
+              '<span class="grid-card-status ' + statusClass + '">' + prop.status + '</span>' +
+            '</div>';
+          card.addEventListener('click', () => {
+            window.location.href = 'mailto:inquiries@auraaestates.com?subject=Inquiry%3A%20' + encodeURIComponent(prop.title);
+          });
+          grid.appendChild(card);
+        });
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          renderProperties(currentFilter);
+        });
+      });
+
+      renderProperties('all');
+
+      // Hamburger
+      document.getElementById('hamburger').addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.getElementById('mobileNav').classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

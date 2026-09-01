@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auraa Estates | Luxury Real Estate & Investment Properties</title>
+  <meta name="description" content="Explore 300+ curated luxury residences, commercial spaces, villas, and investment-ready developments across Dubai, Mumbai, and 10+ cities.">
+  <meta property="og:title" content="Auraa Estates — Premium Real Estate">
+  <meta property="og:description" content="Luxury residences, commercial spaces, and investment properties in prime locations.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav" id="topNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-wordmark">AURAA ESTATES</a>
+      <div class="nav-links" id="navLinks">
+        <a href="properties.html" class="nav-link">Properties</a>
+        <a href="developments.html" class="nav-link">Developments</a>
+        <a href="investment.html" class="nav-link">Investment</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle">EN</button>
+        <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="btn btn-primary nav-cta">Enquire Now</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <div class="mobile-nav-content">
+      <a href="properties.html" class="mobile-nav-link">Properties</a>
+      <a href="developments.html" class="mobile-nav-link">Developments</a>
+      <a href="investment.html" class="mobile-nav-link">Investment</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="mobile-nav-link">Contact</a>
+      <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="btn btn-primary mobile-cta">Enquire Now</a>
+    </div>
+  </div>
+
+  <!-- Hero Ring Gallery -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-headline" id="heroHeadline">Find Your Next<br>Landmark Property.</h1>
+      <p class="hero-subheading" id="heroSubheading">Explore 300+ curated luxury residences, commercial spaces, villas, and investment-ready developments.</p>
+    </div>
+
+    <!-- Center Property Preview -->
+    <div class="center-preview" id="centerPreview">
+      <div class="center-preview-inner">
+        <img id="previewImage" src="" alt="" class="preview-image">
+        <div class="preview-info">
+          <h3 class="preview-title" id="previewTitle"></h3>
+          <p class="preview-meta" id="previewMeta"></p>
+          <a class="preview-cta" id="previewCta" href="#">View Property +</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ring Gallery Container -->
+    <div class="ring-container" id="ringContainer">
+      <div class="ring-gallery" id="ringGallery"></div>
+    </div>
+
+    <!-- Category Labels -->
+    <div class="category-labels" id="categoryLabels"></div>
+
+    <!-- Bottom Instruction -->
+    <div class="hero-instruction">MOVE TO EXPLORE · CLICK TO LOCK A PROPERTY</div>
+
+    <!-- View Controls -->
+    <div class="view-controls">
+      <button class="view-btn" id="filterBtn">Filter Properties +</button>
+      <button class="view-btn" id="gridViewBtn">Grid view +</button>
+    </div>
+  </section>
+
+  <!-- Filter Overlay -->
+  <div class="filter-overlay" id="filterOverlay">
+    <div class="filter-panel">
+      <div class="filter-header">
+        <h2 class="filter-title">Filter Properties</h2>
+        <button class="filter-close" id="filterClose" aria-label="Close filter">✕</button>
+      </div>
+      <div class="filter-groups">
+        <div class="filter-group">
+          <label class="filter-label">Property Type</label>
+          <div class="filter-pills" id="filterType"></div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Location</label>
+          <div class="filter-pills" id="filterLocation"></div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Budget</label>
+          <div class="filter-pills" id="filterBudget"></div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Status</label>
+          <div class="filter-pills" id="filterStatus"></div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Bedrooms</label>
+          <div class="filter-pills" id="filterBedrooms"></div>
+        </div>
+      </div>
+      <div class="filter-actions">
+        <button class="btn btn-secondary" id="filterClear">Clear All</button>
+        <button class="btn btn-primary" id="filterApply">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid View -->
+  <section class="grid-section" id="gridSection" style="display: none;">
+    <div class="grid-header">
+      <h2 class="grid-title">All Properties</h2>
+      <button class="view-btn" id="ringViewBtn">Ring view +</button>
+    </div>
+    <div class="grid-container" id="gridContainer"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4 class="footer-heading">Auraa Estates</h4>
+        <p class="footer-text">Premium real estate developments and investment opportunities across leading cities.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Properties</h4>
+        <a href="properties.html" class="footer-link">Luxury Apartments</a>
+        <a href="properties.html" class="footer-link">Villas</a>
+        <a href="properties.html" class="footer-link">Commercial</a>
+        <a href="properties.html" class="footer-link">Waterfront</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Company</h4>
+        <a href="about.html" class="footer-link">About Us</a>
+        <a href="developments.html" class="footer-link">Developments</a>
+        <a href="investment.html" class="footer-link">Investment</a>
+        <a href="mailto:inquiries@auraaestates.com?subject=Inquiry%20from%20Website" class="footer-link">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Locations</h4>
+        <a href="#" class="footer-link">Dubai</a>
+        <a href="#" class="footer-link">Islamabad</a>
+        <a href="#" class="footer-link">Lahore Pakistan</a>
+        <a href="#" class="footer-link">Karachi</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Connect</h4>
+        <a href="mailto:inquiries@auraaestates.com" class="footer-link">inquiries@auraaestates.com</a>
+        <a href="#" class="footer-link">LinkedIn</a>
+        <a href="#" class="footer-link">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Auraa Estates. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="properties.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Google Analytics Placeholder -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</body>
+</html>
