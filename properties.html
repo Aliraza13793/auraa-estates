@@ -129,7 +129,7 @@
           const card = document.createElement('div');
           card.className = 'grid-card';
           card.innerHTML =
-            '<img class="grid-card-image" src="' + prop.image + '" alt="' + prop.title + '" loading="lazy">' +
+            '<img class="grid-card-image" src="' + prop.image + '" alt="' + prop.title + '" loading="lazy" onerror="this.style.background=\'var(--surface)\';this.alt=\'Image unavailable\'">' +
             '<div class="grid-card-body">' +
               '<h3 class="grid-card-title">' + prop.title + '</h3>' +
               '<p class="grid-card-meta">' + prop.category + ' \u00B7 ' + prop.location + '</p>' +
@@ -155,10 +155,33 @@
       renderProperties('all');
 
       // Hamburger
-      document.getElementById('hamburger').addEventListener('click', function() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      hamburger.addEventListener('click', function() {
         this.classList.toggle('active');
-        document.getElementById('mobileNav').classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        document.body.classList.toggle('nav-open');
       });
+
+      // Close on nav link click
+      document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          mobileNav.classList.remove('active');
+          document.body.classList.remove('nav-open');
+        });
+      });
+
+      // Back to top
+      const backBtn = document.createElement('button');
+      backBtn.className = 'back-to-top';
+      backBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>';
+      backBtn.setAttribute('aria-label', 'Back to top');
+      document.body.appendChild(backBtn);
+      window.addEventListener('scroll', () => {
+        backBtn.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     });
   </script>
 </body>

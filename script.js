@@ -73,6 +73,7 @@
     buildFilterOptions();
     createPanels();
     bindEvents();
+    createBackToTop();
     if (!state.isTouch) {
       customCursor.classList.add('visible');
     }
@@ -263,16 +264,35 @@
 
     // Hamburger
     hamburger.addEventListener('click', () => {
+      const isActive = hamburger.classList.contains('active');
       hamburger.classList.toggle('active');
       mobileNav.classList.toggle('active');
+      document.body.classList.toggle('nav-open');
+      if (!isActive) {
+        state.navOpen = true;
+      } else {
+        state.navOpen = false;
+      }
     });
 
-    // Mobile nav links
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', (e) => {
+    // Mobile nav links - close on click
+    document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(link => {
+      link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         mobileNav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        state.navOpen = false;
       });
+    });
+
+    // Close mobile nav on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1023 && state.navOpen) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        state.navOpen = false;
+      }
     });
 
     // Filter
@@ -593,6 +613,27 @@
         centerPreview.classList.remove('active');
       }});
     };
+  }
+
+  // ===== BACK TO TOP =====
+  function createBackToTop() {
+    const btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>';
+    btn.setAttribute('aria-label', 'Back to top');
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   // ===== START =====
